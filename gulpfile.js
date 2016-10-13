@@ -1,18 +1,33 @@
+//
+// Created by Remi Lelaidier on 12/10/2016
+// Email : r.lelaidier@hotmail.fr
+//
+
 var gulp = require('gulp');
 var exec = require('child_process').exec;
-var buildCommand = "gcc --std=c99 bin/.c -o exe/";
-var binSrc = "/home/leetspeakv2/Travail/MIAGE/S5/SISR/TP/TP1/bin/";
-var exeSrc = "/home/leetspeakv2/Travail/MIAGE/S5/SISR/TP/TP1/exe/";
 
+// your src directory
+var binSrc = "/home/user/...";
+
+// your exe directory
+var exeSrc = "/home/user/...";
+
+// the compilator and his arguments
+var gcc = "gcc --std=c99 ";
+
+// task empty is necessary
 gulp.task('empty',function () {
 });
 
+// The watcher
 gulp.task('watch', function() {
-    gulp.watch('bin/*.c', ['empty']).on('change',function (file) {
+    // When a .c file is modified
+    gulp.watch(binSrc + '*.c', ['empty']).on('change',function (file) {
         var fileName = file.path;
         fileName = fileName.replace(".c", "");
         fileName = fileName.replace(binSrc, "");
-        var buildCommand = "gcc --std=c99 " + binSrc + fileName + ".c -o " + exeSrc + fileName;
+        // Create the buildCommand
+        var buildCommand = gcc + binSrc + fileName + ".c -o " + exeSrc + fileName;
         exec(buildCommand, function (error, stdout, stderr) {
             console.log(stdout);
             console.log(stderr);
