@@ -16,10 +16,12 @@ var fs = require("fs"); // Node Filesystem
 var dirname = __dirname; // Current working directory
 var srcFolder = dirname + "/src/";                                          // your src directory
 var binFolder = dirname + "/bin/";                                          // your bin directory
+
 var gcc = "gcc ";                                                           // the c compilator
 var gpp = "g++ ";                                                           // the c++ compilator
 var javac = "javac ";                                                       // the java compilator
 
+// Compile on launch
 gulp.task('compile',function () {
     var arrayFiles = fs.readdirSync(dirname + "/src/");
     for(var i = 0; i < arrayFiles.length; i++){
