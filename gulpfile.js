@@ -44,7 +44,6 @@ gulp.task('watch', function() {
             var errFormat = stderr.replace(dirname + "/src/", "");
             console.log(fileName.green + ".c" + " compilé" );
             console.log(stdout);
-            console.log(errFormat);
             if(errFormat.length !== 0){
                 console.log("Erreur : ".red + errFormat);
             }
