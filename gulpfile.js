@@ -13,9 +13,9 @@ var colors = require('colors'); // npm install colors -> Colors in the terminal
 var exec = require('child_process').exec;
 var fs = require("fs"); // Node Filesystem
 
-var dirname = __dirname; // Current working directory
+var dirname = __dirname;
 var srcFolder = dirname + "/src/";                                          // your src directory
-var binFolder = dirname + "/bin/";                                          // your bin directory
+var binFolder = dirname + "/bin/";                                          // Your bin folder
 
 var gcc = "gcc ";                                                           // the c compilator
 var gpp = "g++ ";                                                           // the c++ compilator
