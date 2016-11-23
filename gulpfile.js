@@ -3,6 +3,7 @@
 // A script that automatically compile a .c or .cpp or .java file from a folder
 //
 // Created by Remi Lelaidier on 12/10/2016
+// Contributor : Ghostfly
 // Email : r.lelaidier@hotmail.fr
 //
 
@@ -11,15 +12,15 @@ var gulp = require('gulp');
 var exec = require('child_process').exec;
 var fs = require("fs");
 
-// TODO get current directory
+
 var dirname = __dirname;
-var srcFolder = dirname + "/src/";      // your src directory
-var binFolder = dirname + "/bin/";  
+var srcFolder = dirname + "/src/";                                          // your src directory
+var binFolder = dirname + "/bin/";                                          // Your bin folder
 var gcc = "gcc ";                                                           // the c compilator
 var gpp = "g++ ";                                                           // the c++ compilator
 var javac = "javac ";                                                       // the java compilator
 
-// empty task is necessary
+// Compile on launch
 gulp.task('compile',function () {
     var arrayFiles = fs.readdirSync(dirname + "/src/");
     for(var i = 0; i < arrayFiles.length; i++){
