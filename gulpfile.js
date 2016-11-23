@@ -11,6 +11,7 @@
 var gulp = require('gulp');
 var exec = require('child_process').exec;
 var fs = require("fs");
+var colors = require("colors/safe");
 
 
 var dirname = __dirname;
@@ -28,9 +29,9 @@ gulp.task('compile',function () {
         console.log("Compilation de : " + name);
         var buildCommand = gcc + srcFolder + arrayFiles[i] + " -o " + binFolder + name;
         exec(buildCommand, function (error, stdout, stderr) {
-            console.log(buildCommand);
+            console.log(colors.blue(buildCommand));
             console.log(stdout);
-            console.log(stderr);
+            console.log(colors.red(stderr));
         });
     }
 });
@@ -44,9 +45,9 @@ gulp.task('watch', function() {
         fileName = fileName.replace(srcFolder, "");
         var buildCommand = gcc + srcFolder + fileName + ".c -o " + binFolder + fileName;
         exec(buildCommand, function (error, stdout, stderr) {
-            console.log(buildCommand);
+            console.log(colors.blue(buildCommand));
             console.log(stdout);
-            console.log(stderr);
+            console.log(colors.red(stderr));
         });
     });
 
@@ -57,9 +58,9 @@ gulp.task('watch', function() {
         filename = filename.replace(srcFolder, '');
         var buildCommand = gpp + srcFolder + filename + ".cpp -o " + binFolder + filename;
         exec(buildCommand, function(error, stdout, stderr){
-            console.log(buildCommand);
+            console.log(colors.blue(buildCommand));
             console.log(stdout);
-            console.log(stderr);
+            console.log(colors.red(stderr));
         });
     });
 
