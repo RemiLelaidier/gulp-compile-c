@@ -71,4 +71,4 @@ gulp.task('watch', function() {
     });*/
 });
 
-gulp.task('default',['watch'],function(){});
+gulp.task('default',['compile', 'watch'],function(){});
