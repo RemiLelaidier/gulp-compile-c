@@ -21,7 +21,6 @@ var javac = "javac ";                                                       // t
 
 // empty task is necessary
 gulp.task('compile',function () {
-    console.log();
     var arrayFiles = fs.readdirSync(dirname + "/src/");
     for(var i = 0; i < arrayFiles.length; i++){
         var name = arrayFiles[i].replace(".c", "");
