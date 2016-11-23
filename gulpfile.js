@@ -9,20 +9,34 @@
 // Dependancies
 var gulp = require('gulp');
 var exec = require('child_process').exec;
+var fs = require("fs");
 
 // TODO get current directory
-var srcFolder = "/home/leetspeakv2/Travail/MIAGE/S5/SISR/TP/TP2/src/";      // your src directory
-var binFolder = "/home/leetspeakv2/Travail/MIAGE/S5/SISR/TP/TP2/bin/";      // your exe directory
+var dirname = __dirname;
+var srcFolder = dirname + "/src/";      // your src directory
+var binFolder = dirname + "/bin/";  
 var gcc = "gcc ";                                                           // the c compilator
 var gpp = "g++ ";                                                           // the c++ compilator
 var javac = "javac ";                                                       // the java compilator
 
 // empty task is necessary
-gulp.task('compile',function () {});
+gulp.task('compile',function () {
+    console.log();
+    var arrayFiles = fs.readdirSync(dirname + "/src/");
+    for(var i = 0; i < arrayFiles.length; i++){
+        var name = arrayFiles[i].replace(".c", "");
+        console.log("Compilation de : " + name);
+        var buildCommand = gcc + srcFolder + arrayFiles[i] + " -o " + binFolder + name;
+        exec(buildCommand, function (error, stdout, stderr) {
+            console.log(buildCommand);
+            console.log(stdout);
+            console.log(stderr);
+        });
+    }
+});
 
 // The watcher
 gulp.task('watch', function() {
-
     /*---- C Language ----*/
     gulp.watch(srcFolder + '*.c', ['compile']).on('change',function (file) {
         var fileName = file.path;
