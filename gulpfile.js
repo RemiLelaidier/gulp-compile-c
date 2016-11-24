@@ -77,6 +77,7 @@ gulp.task('compile',function () {
 gulp.task('watch', function() {
     /*---- C Language ----*/
     gulp.watch(srcFolder + '*.c').on('change',function (file) {
+        dateNow();
         var fileName = file.path;
         fileName = fileName.replace(".c", "");
         fileName = fileName.replace(srcFolder, "");
