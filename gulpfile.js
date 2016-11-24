@@ -57,13 +57,13 @@ gulp.task('compile',function () {
 gulp.task('watch', function() {
     /*---- C Language ----*/
     gulp.watch(srcFolder + '*.c').on('change',function (file) {
+        dateNow();
         var fileName = file.path;
         fileName = fileName.replace(".c", "");
         fileName = fileName.replace(srcFolder, "");
+        console.log("Compilation de : " + colors.green(fileName + ".c"));
         var buildCommand = gcc + srcFolder + fileName + ".c -o " + binFolder + fileName;
         exec(buildCommand, function(error, stdout, stderr){
-            dateNow();
-            console.log(colors.green(buildCommand));
             print(stdout, stderr);
         });
     });
