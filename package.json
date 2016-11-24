@@ -1,0 +1,31 @@
+{
+  "name": "gulp-c",
+  "version": "1.0.0",
+  "description": "Compile c/c++/java with gulp",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "gulp": "^3.9.1",
+    "colors": "^1.1.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "gulp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RemiLelaidier/gulp-compile-c.git"
+  },
+  "keywords": [
+    "gulp",
+    "compile",
+    "c",
+    "c++",
+    "java"
+  ],
+  "author": "Ghostfly/RemiLelaidier",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RemiLelaidier/gulp-compile-c/issues"
+  },
+  "homepage": "https://github.com/RemiLelaidier/gulp-compile-c#readme"
+}
