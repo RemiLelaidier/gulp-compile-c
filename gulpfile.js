@@ -7,6 +7,8 @@
 // Email : r.lelaidier@hotmail.fr
 //
 
+// For install dependancies, run 'npm install'
+
 // Dependancies
 var gulp = require('gulp');
 var exec = require('child_process').exec;
