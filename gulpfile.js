@@ -28,7 +28,20 @@ gulp.task('compile',function () {
         var name = arrayFiles[i].replace(".c", "");
         console.log("Compilation de : ".green + name);
         var buildCommand = gcc + srcFolder + arrayFiles[i] + " -o " + binFolder + name;
-        exec(buildCommand);
+        var commandFormat = "";
+        commandFormat = buildCommand.replace(dirname + "/src/", ""); // On enlève le chemin pour le src
+        commandFormat = commandFormat.replace(dirname + "/bin/", ""); // On enlève le chemin pour le bin
+        console.log("Commande exécutée : ".blue + commandFormat);
+        var currErr = "";
+        exec(buildCommand, function(error, stdout, stderr){
+            var errFormat = stderr.replace(dirname + "/src/", "");
+            errFormat = errFormat.replace(dirname + "/bin/", "");
+            console.log(name.green + ".c" + " compilé" );
+            console.log(stdout);
+            if(errFormat.length !== 0){
+                console.log("Erreur : ".red + errFormat);
+            }
+        });
     }
 });
 
