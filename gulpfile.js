@@ -39,17 +39,37 @@ function print(stdout, stderr){
     }
 }
 
+// Compil c function
+function execCompilC(fileName){
+    var buildCommand = gcc + srcFolder + fileName + ".c -o " + binFolder + fileName;
+    exec(buildCommand, function(error, stdout, stderr){
+        dateNow();
+        console.log("Compilation de : " + colors.green(fileName + ".c"));
+        print(stdout, stderr);
+    });
+}
+
+// Compil Cpp function
+function execCompilCpp(fileName){
+    var buildCommand = gpp + srcFolder + filename + ".cpp -o " + binFolder + filename;
+    exec(buildCommand, function(error, stdout, stderr){
+        dateNow();
+        console.log("Compilation de : " + colors.green(fileName + ".cpp"));
+        print(stdout, stderr);
+    });
+}
+
+// Compil Java function
+function execCompilJava(fileName){
+
+}
+
 // Compile on launch (C only)
 gulp.task('compile',function () {
     var arrayFiles = fs.readdirSync(dirname + "/src/");
     for(var i = 0; i < arrayFiles.length; i++){
-        dateNow();
         var fileName = arrayFiles[i].replace(".c", "");
-        console.log(colors.green("Compilation de : " + arrayFiles[i]));
-        var buildCommand = gcc + srcFolder + arrayFiles[i] + " -o " + binFolder + fileName;
-        exec(buildCommand, function(error, stdout, stderr){
-            print(stdout, stderr);
-        });
+        execCompilC(fileName);
     }
 });
 
@@ -60,33 +80,23 @@ gulp.task('watch', function() {
         var fileName = file.path;
         fileName = fileName.replace(".c", "");
         fileName = fileName.replace(srcFolder, "");
-        var buildCommand = gcc + srcFolder + fileName + ".c -o " + binFolder + fileName;
-        exec(buildCommand, function(error, stdout, stderr){
-            dateNow();
-            console.log(colors.green(buildCommand));
-            print(stdout, stderr);
-        });
+        execCompilC(fileName);
     });
 
     /*---- C++ Language ----*/
     gulp.watch(srcFolder + '*.cpp').on('change', function (file) {
-        var filename = file.path;
-        filename = filename.replace(".cpp", "");
-        filename = filename.replace(srcFolder, '');
-        var buildCommand = gpp + srcFolder + filename + ".cpp -o " + binFolder + filename;
-        exec(buildCommand, function(error, stdout, stderr){
-            dateNow();
-            console.log(colors.green(buildCommand));
-            print(stdout, stderr);
-        });
+        var fileName = file.path;
+        fileName = fileName.replace(".cpp", "");
+        fileName = fileName.replace(srcFolder, '');
+        execCompilCpp(fileName);
     });
 
     /*---- JAVA Language ----*/
     /*gulp.watch(srcFolder + '*.java').on('change', function(file) {
-        var filename = file.path;
-        filename = filename.replace(".java", "");
-        filename = filename.replace(srcFolder, '');
-        var buildCommand = javac + srcFolder + filename + ".java"
+        var fileName = file.path;
+        fileName = fileName.replace(".java", "");
+        fileName = fileName.replace(srcFolder, '');
+        execCompilJava(fileName);
     });*/
 });
 
