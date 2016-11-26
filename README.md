@@ -12,8 +12,11 @@ If you don't have them, google it.
 * Put gulpfile.js and package.json
 * Open a terminal inside the working folder
 * Type 'npm install' for install dependancies
-* Then type 'gulp'
-    * For using options you have to type **'gulp default --options'** instead
+
+# Usage:
+
+* Type 'gulp' for the default mode
+* For using options you have to type **'gulp default --options'** instead
     * Options :
         * --v : verbose mode
 * Enjoy :)
