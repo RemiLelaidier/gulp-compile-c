@@ -46,15 +46,21 @@ function dateNow(){
 }
 
 // Printing function
-function print(stdout, stderr, fileName){
+function print(stdout, stderr, fileName, buildCommand){
+    dateNow();
+    console.log("Compilation de : " + colors.green(fileName + ".c"));
+    if(argv.v){
+        console.log("Commande : " + colors.blue(buildCommand));
+    }
     var errFormat = stderr.replace(dirname + "/src/", "");
     console.log(stdout);
     if(errFormat.length !== 0){
         console.log(colors.red(errFormat));
     }
-    else{
+    /*else{
+         Prochaine version -> Lancement de l'executable
         confirmRun(fileName);
-    }
+    }*/
 }
 
 // Compil function
@@ -77,9 +83,7 @@ function exeCompil(fileName, lang){
     }
     var buildCommand = compilator + srcFolder + fileName + extension + " -o " + binFolder + fileName;
     exec(buildCommand, function(error, stdout, stderr){
-        dateNow();
-        console.log("Compilation de : " + colors.green(fileName + ".c"));
-        print(stdout, stderr, fileName);
+        print(stdout, stderr, fileName, buildCommand);
     });
 }
 
