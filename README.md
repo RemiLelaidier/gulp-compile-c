@@ -8,9 +8,12 @@ If you don't have them, google it.
 
 #Installation:
 
-- Go to your working folder
-- Put gulpfile.js and package.json
-- Open a terminal inside the working folder
-- Type 'npm install' for install dependancies
-- Then type 'gulp'
-- Enjoy :)
+* Go to your working folder
+* Put gulpfile.js and package.json
+* Open a terminal inside the working folder
+* Type 'npm install' for install dependancies
+* Then type 'gulp'
+    * For using options you have to type 'gulp default <options>' instead
+    * Options :
+        * --v : verbose mode
+* Enjoy :)
