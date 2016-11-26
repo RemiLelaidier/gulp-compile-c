@@ -19,4 +19,6 @@ If you don't have them, google it.
 * For using options you have to type **'gulp default --options'** instead
     * Options :
         * --v : verbose mode
+        * --flags **options** : use compiler options like std=c99
+            * **WARNING** : don't use the '-' or '--'
 * Enjoy :)

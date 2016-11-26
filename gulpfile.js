@@ -81,7 +81,14 @@ function exeCompil(fileName, lang){
             extension = ".java";
             break;*/
     }
-    var buildCommand = compilator + srcFolder + fileName + extension + " -o " + binFolder + fileName;
+    // If there is options for the compiler
+    if(argv.flags){
+        var flags = "--" + argv.flags + " ";
+        var buildCommand = compilator + flags + srcFolder + fileName + extension + " -o " + binFolder + fileName;
+    }
+    else{
+        var buildCommand = compilator + srcFolder + fileName + extension + " -o " + binFolder + fileName;
+    }
     exec(buildCommand, function(error, stdout, stderr){
         print(stdout, stderr, fileName, buildCommand);
     });
