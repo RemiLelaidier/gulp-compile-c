@@ -15,7 +15,7 @@ If you don't have them, google it.
 
 # Usage:
 
-* Type 'gulp' for the default mode
+* Type **'gulp'** for the default mode
 * For using options you have to type **'gulp default --options'** instead
     * Options :
         * --v : verbose mode
