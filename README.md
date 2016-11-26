@@ -13,7 +13,7 @@ If you don't have them, google it.
 * Open a terminal inside the working folder
 * Type 'npm install' for install dependancies
 * Then type 'gulp'
-    * For using options you have to type 'gulp default <options>' instead
+    * For using options you have to type **'gulp default --options'** instead
     * Options :
         * --v : verbose mode
 * Enjoy :)
