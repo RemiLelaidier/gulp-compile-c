@@ -1,13 +1,16 @@
 {
-  "name": "gulp-c",
-  "version": "1.0.0",
-  "description": "Compile c/c++/java with gulp",
+  "name": "gulp-compile",
+  "version": "1.1.0",
+  "description": "Gulp compile c c++ and java",
   "main": "gulpfile.js",
   "dependencies": {
-    "gulp": "^3.9.1",
-    "colors": "^1.1.2"
+    "colors": "^1.1.2",
+    "gulp-confirm": "^1.0.4",
+    "gulp": "^3.9.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "yargs": "^6.4.0"
+  },
   "scripts": {
     "test": "gulp"
   },
@@ -22,7 +25,7 @@
     "c++",
     "java"
   ],
-  "author": "Ghostfly/RemiLelaidier",
+  "author": "Remi Lelaidier / Ghostfly",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/RemiLelaidier/gulp-compile-c/issues"
