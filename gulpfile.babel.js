@@ -10,20 +10,21 @@
 // For install dependancies, run 'npm install'
 
 // Dependancies
-var gulp = require('gulp');
-var exec = require('child_process').exec;
-var fs = require("fs");
-var colors = require("colors/safe");
-var confirm = require("gulp-confirm");
-var argv = require('yargs').argv;
+import gulp from 'gulp';
+
+import {exec} from 'child_process';
+import fs from "fs";
+import colors from "colors/safe";
+import confirm from "gulp-confirm";
+import {argv} from 'yargs';
 
 
-var dirname = __dirname;
-var srcFolder = dirname + "/src/";                                          // your src directory
-var binFolder = dirname + "/bin/";                                          // Your bin folder
-var gcc = "gcc ";                                                           // the c compilator
-var gpp = "g++ ";                                                           // the c++ compilator
-var javac = "javac ";                                                       // the java compilator
+const dirname = __dirname;
+const srcFolder = `${dirname}/src/`;                                          // your src directory
+const binFolder = `${dirname}/bin/`;                                          // Your bin folder
+const gcc = "gcc ";                                                           // the c compilator
+const gpp = "g++ ";                                                           // the c++ compilator
+const javac = "javac ";                                                       // the java compilator
 
 
 /*
@@ -33,26 +34,26 @@ var javac = "javac ";                                                       // t
 // function asking for launching the file
 function confirmRun(fileName) {
     return gulp.src(binFolder).pipe(confirm({
-        question : "Launch " + fileName + " (y) ",
+        question : `Launch ${fileName} (y) `,
         input: '_key:y'
     })).pipe(gulp.dest(''));
 }
 
 // function date
 function dateNow(){
-    var date = new Date();
-    var time = date.toLocaleTimeString();
-    console.log("[" + colors.blue(time) + "]");
+    const date = new Date();
+    const time = date.toLocaleTimeString();
+    console.log(`[${colors.blue(time)}]`);
 }
 
 // Printing function
 function print(stdout, stderr, fileName, buildCommand){
     dateNow();
-    console.log("Compilation de : " + colors.green(fileName + ".c"));
+    console.log(`Compilation de : ${colors.green(fileName + ".c")}`);
     if(argv.v){
-        console.log("Commande : " + colors.blue(buildCommand));
+        console.log(`Commande : ${colors.blue(buildCommand)}`);
     }
-    var errFormat = stderr.replace(dirname + "/src/", "");
+    const errFormat = stderr.replace(`${dirname}/src/`, "");
     console.log(stdout);
     if(errFormat.length !== 0){
         console.log(colors.red(errFormat));
@@ -65,8 +66,8 @@ function print(stdout, stderr, fileName, buildCommand){
 
 // Compil function
 function exeCompil(fileName, lang){
-    var compilator;
-    var extension;
+    let compilator;
+    let extension;
     switch (lang){
         case "c":
             compilator = gcc;
@@ -83,13 +84,13 @@ function exeCompil(fileName, lang){
     }
     // If there is options for the compiler
     if(argv.flags){
-        var flags = "--" + argv.flags + " ";
-        var buildCommand = compilator + flags + srcFolder + fileName + extension + " -o " + binFolder + fileName;
+        const flags = `--${argv.flags} `;
+        var buildCommand = `${compilator + flags + srcFolder + fileName + extension} -o ${binFolder}${fileName}`;
     }
     else{
-        var buildCommand = compilator + srcFolder + fileName + extension + " -o " + binFolder + fileName;
+        var buildCommand = `${compilator + srcFolder + fileName + extension} -o ${binFolder}${fileName}`;
     }
-    exec(buildCommand, function(error, stdout, stderr){
+    exec(buildCommand, (error, stdout, stderr) => {
         print(stdout, stderr, fileName, buildCommand);
     });
 }
@@ -98,27 +99,27 @@ function exeCompil(fileName, lang){
         TASKS
  */
 // Compile on launch (C only)
-gulp.task('compile',function () {
-    var arrayFiles = fs.readdirSync(dirname + "/src/");
-    for(var i = 0; i < arrayFiles.length; i++){
-        var fileName = arrayFiles[i].replace(".c", "");
+gulp.task('compile',() => {
+    const arrayFiles = fs.readdirSync(`${dirname}/src/`);
+    for(let i = 0; i < arrayFiles.length; i++){
+        const fileName = arrayFiles[i].replace(".c", "");
         exeCompil(fileName, "c");
     }
 });
 
 // Watch change on file
-gulp.task('watch', function() {
+gulp.task('watch', () => {
     /*---- C Language ----*/
-    gulp.watch(srcFolder + '*.c').on('change',function (file) {
-        var fileName = file.path;
+    gulp.watch(`${srcFolder}*.c`).on('change',file => {
+        let fileName = file.path;
         fileName = fileName.replace(".c", "");
         fileName = fileName.replace(srcFolder, "");
         exeCompil(fileName, "c");
     });
 
     /*---- C++ Language ----*/
-    gulp.watch(srcFolder + '*.cpp').on('change', function (file) {
-        var fileName = file.path;
+    gulp.watch(`${srcFolder}*.cpp`).on('change', file => {
+        let fileName = file.path;
         fileName = fileName.replace(".cpp", "");
         fileName = fileName.replace(srcFolder, '');
         exeCompil(fileName, "cpp");
@@ -133,4 +134,4 @@ gulp.task('watch', function() {
     });*/
 });
 
-gulp.task('default',['compile', 'watch'],function(){});
+gulp.task('default',['compile', 'watch'],() => {});
