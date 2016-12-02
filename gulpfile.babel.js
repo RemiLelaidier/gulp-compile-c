@@ -1,5 +1,5 @@
 //
-// gulp-compile-c-cpp-java
+// gulp-compile-c-cpp
 // A script that automatically compile a .c or .cpp or .java file from a folder
 //
 // Created by Remi Lelaidier on 12/10/2016
@@ -18,18 +18,17 @@ import colors from "colors/safe";
 import confirm from "gulp-confirm";
 import {argv} from 'yargs';
 
-
 const dirname = __dirname;
 const srcFolder = `${dirname}/src/`;                                          // your src directory
 const binFolder = `${dirname}/bin/`;                                          // Your bin folder
 const gcc = "gcc ";                                                           // the c compilator
 const gpp = "g++ ";                                                           // the c++ compilator
-const javac = "javac ";                                                       // the java compilator
 
 
 /*
-        FUNCTIONS
+ * Functions
  */
+
 // TODO
 // function asking for launching the file
 function confirmRun(fileName) {
@@ -39,7 +38,7 @@ function confirmRun(fileName) {
     })).pipe(gulp.dest(''));
 }
 
-// function date
+// Get current sys date
 function dateNow(){
     const date = new Date();
     const time = date.toLocaleTimeString();
@@ -58,7 +57,7 @@ function print(stdout, stderr, fileName, buildCommand){
     if(errFormat.length !== 0){
         console.log(colors.red(errFormat));
     }
-    /*else{
+    /* else{
          Prochaine version -> Lancement de l'executable
         confirmRun(fileName);
     }*/
@@ -77,10 +76,6 @@ function exeCompil(fileName, lang){
             compilator = gpp;
             extension = ".cpp";
             break;
-        /*case "java":
-            compilator = javac;
-            extension = ".java";
-            break;*/
     }
     // If there is options for the compiler
     if(argv.flags){
@@ -96,7 +91,7 @@ function exeCompil(fileName, lang){
 }
 
 /*
-        TASKS
+ * Tasks
  */
 // Compile on launch (C only)
 gulp.task('compile',() => {
@@ -124,14 +119,6 @@ gulp.task('watch', () => {
         fileName = fileName.replace(srcFolder, '');
         exeCompil(fileName, "cpp");
     });
-
-    /*---- JAVA Language ----*/
-    /*gulp.watch(srcFolder + '*.java').on('change', function(file) {
-        var fileName = file.path;
-        fileName = fileName.replace(".java", "");
-        fileName = fileName.replace(srcFolder, '');
-        execCompilJava(fileName);
-    });*/
 });
 
 gulp.task('default',['compile', 'watch'],() => {});
