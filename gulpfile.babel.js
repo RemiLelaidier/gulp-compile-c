@@ -24,11 +24,10 @@ const srcFolder = `${dirname}/src/`;                                          //
 const binFolder = `${dirname}/bin/`;                                          // Your bin folder
 const gcc = "gcc ";                                                           // the c compilator
 const gpp = "g++ ";                                                           // the c++ compilator
-const javac = "javac ";                                                       // the java compilator
 
 
 /*
-        FUNCTIONS
+ * Functions
  */
 // TODO
 // function asking for launching the file
@@ -39,7 +38,7 @@ function confirmRun(fileName) {
     })).pipe(gulp.dest(''));
 }
 
-// function date
+// Current date
 function dateNow(){
     const date = new Date();
     const time = date.toLocaleTimeString();
@@ -77,10 +76,6 @@ function exeCompil(fileName, lang){
             compilator = gpp;
             extension = ".cpp";
             break;
-        /*case "java":
-            compilator = javac;
-            extension = ".java";
-            break;*/
     }
     // If there is options for the compiler
     if(argv.flags){
@@ -124,14 +119,6 @@ gulp.task('watch', () => {
         fileName = fileName.replace(srcFolder, '');
         exeCompil(fileName, "cpp");
     });
-
-    /*---- JAVA Language ----*/
-    /*gulp.watch(srcFolder + '*.java').on('change', function(file) {
-        var fileName = file.path;
-        fileName = fileName.replace(".java", "");
-        fileName = fileName.replace(srcFolder, '');
-        execCompilJava(fileName);
-    });*/
 });
 
 gulp.task('default',['compile', 'watch'],() => {});
