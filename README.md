@@ -3,7 +3,7 @@ gulp can compile c
 
 #Requirements:
 
-Have gulp, node.js and npm installed on your computer 
+Have latest gulp, latest node.js and npm installed on your computer 
 If you don't have them, google it.
 
 #Installation:
